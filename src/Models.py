@@ -3,6 +3,7 @@ db = SQLAlchemy()
 
 
 class Device(db.Model):
+    '''Class modelling the radio device'''
     id = db.Column(db.Integer(), primary_key=True)
     alias = db.Column(db.String(), nullable=False)
     location = db.Column(db.String())
@@ -17,7 +18,7 @@ class Device(db.Model):
 
     @property
     def serialize(self):
-        """Return object data in easily serializeable format"""
+        """Method that allows serialization of the Device object"""
         return {
             'id': self.id,
             'alias': self.alias,
@@ -27,6 +28,7 @@ class Device(db.Model):
 
 
 class Location(db.Model):
+    '''Class modelling a location'''
     id = db.Column(db.Integer(), primary_key=True)
     location = db.Column(db.String(), nullable=False)
     device_id = db.Column(db.Integer, db.ForeignKey(

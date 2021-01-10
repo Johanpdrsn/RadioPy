@@ -11,6 +11,7 @@ app.config.from_pyfile('config.py')
 db = SQLAlchemy(app)
 
 
+# Route for adding device by id
 @app.route('/radios/<id>', methods=['POST'])
 def create_device(id) -> Response:
     if not request.is_json or 'alias' not in request.get_json() or "allowed_locations" not in request.get_json():
@@ -26,6 +27,8 @@ def create_device(id) -> Response:
     db.session.commit()
 
     return jsonify(device.serialize), 201
+
+# Route for setting the location of a device
 
 
 @app.route('/radios/<id>/location', methods=["POST"])
@@ -44,6 +47,8 @@ def set_location(id) -> Response:
     device.location = request.get_json()["location"]
     db.session.commit()
     return Response(status=200)
+
+# Route to get location of a device
 
 
 @app.route('/radios/<id>/location', methods=["GET"])
