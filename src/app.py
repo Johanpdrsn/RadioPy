@@ -1,6 +1,6 @@
 from flask.wrappers import Response
-from Models import Device, Locations
-from flask import Flask, json, jsonify, request
+from Models import Device, Location
+from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 from Models import Device
 
@@ -18,7 +18,7 @@ def create_device(id) -> Response:
 
     device = Device(id, request.get_json()["alias"])
     for loc in request.get_json()["allowed_locations"]:
-        location = Locations(loc, device.id)
+        location = Location(loc, device.id)
         db.session.add(location)
 
     db.session.add(device)
