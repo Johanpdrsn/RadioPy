@@ -1,0 +1,11 @@
+click
+Flask
+Flask-SQLAlchemy
+itsdangerous
+Jinja2
+jsonify
+MarkupSafe
+psycopg2-binary
+six
+SQLAlchemy
+Werkzeug
