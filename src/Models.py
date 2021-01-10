@@ -41,6 +41,7 @@ class Location(db.Model):
 
     @property
     def serialize(self) -> None:
+        """Method that allows serialization of the Location object"""
         return {
             'id': self.id,
             'device_id': self.device_id,
