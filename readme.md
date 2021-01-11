@@ -1,6 +1,7 @@
 # Rest API for Motorola coding task
 
-A rest API allowing to post devices, set their location and get the location of a device.
+A rest API allowing to post devices, set their location and get the location of a device. Implemented in python 3.8 using flask and
+sqlAlchemy with sqlite.
 
 ## Build
 
