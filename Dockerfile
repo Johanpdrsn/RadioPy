@@ -19,7 +19,7 @@ COPY . /app
 RUN useradd appuser && chown -R appuser /app
 USER appuser
 
-ENV FLASK_APP=src/app.py
+ENV FLASK_APP=src/app.py FLASK_ENV="docker"
 
 CMD ["bash","docker-entrypoint.sh"]
 

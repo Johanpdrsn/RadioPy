@@ -23,13 +23,9 @@ def create_device(id) -> Response:
         return Response("Device already exists", status=409)
 
     # Add device and location to database
-    device = Device(id, request.get_json()["alias"])
-    for loc in request.get_json()["allowed_locations"]:
-        location = Location(loc, device.id)
-        db.session.add(location)
+    device = Device(id, request.get_json()["alias"], request.get_json()["allowed_locations"])
 
     db.session.add(device)
-
     db.session.commit()
 
     return jsonify(device.serialize), 201

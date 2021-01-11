@@ -8,13 +8,15 @@ class Device(db.Model):
     alias = db.Column(db.String(), nullable=False)
     location = db.Column(db.String())
     allowed_locations = db.relationship(
-        "Location", backref="device", lazy="select")
+        "Location", backref="alias")
 
-    def __init__(self, id, alias) -> None:
+    def __init__(self, id, alias, allowed_locations) -> None:
         super().__init__()
         self.location = None
         self.id = id
         self.alias = alias
+        self.allowed_locations = list(map(Location,allowed_locations, id))
+
 
     @property
     def serialize(self):
@@ -32,7 +34,7 @@ class Location(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     location = db.Column(db.String(), nullable=False)
     device_id = db.Column(db.Integer, db.ForeignKey(
-        'device.id'), nullable=False)
+        'device.id'))
 
     def __init__(self, location, device_id) -> None:
         super().__init__()
