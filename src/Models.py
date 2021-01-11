@@ -15,8 +15,7 @@ class Device(db.Model):
         self.location = None
         self.id = id
         self.alias = alias
-        self.allowed_locations = list(map(Location,allowed_locations, id))
-
+        self.allowed_locations = list(map(Location, allowed_locations, id))
 
     @property
     def serialize(self):

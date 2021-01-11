@@ -1,5 +1,5 @@
 from flask.wrappers import Response
-from Models import Device, Location
+from Models import Device
 from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 from Models import Device
@@ -23,7 +23,8 @@ def create_device(id) -> Response:
         return Response("Device already exists", status=409)
 
     # Add device and location to database
-    device = Device(id, request.get_json()["alias"], request.get_json()["allowed_locations"])
+    device = Device(id, request.get_json()[
+                    "alias"], request.get_json()["allowed_locations"])
 
     db.session.add(device)
     db.session.commit()
@@ -31,6 +32,8 @@ def create_device(id) -> Response:
     return jsonify(device.serialize), 201
 
 # Set location of device with <id>
+
+
 @app.route('/radios/<id>/location', methods=["POST"])
 def set_location(id) -> Response:
     device = Device.query.filter_by(id=id).first()
@@ -46,11 +49,17 @@ def set_location(id) -> Response:
     if request.get_json()["location"] not in allowed_locations:
         return Response(status=403)
 
-    device.location = request.get_json()["location"]
+    # Update the location
+    db.session.query(Device).filter(Device.id == id).\
+        update({Device.location: request.get_json()[
+               "location"]}, synchronize_session=False)
     db.session.commit()
+
     return Response(status=200)
 
 # Get the location of device with <id>
+
+
 @app.route('/radios/<id>/location', methods=["GET"])
 def get_location(id) -> Response:
     device = Device.query.filter_by(id=id).first()
