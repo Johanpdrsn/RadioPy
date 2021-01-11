@@ -21,8 +21,10 @@ Example use of the api:
     "alias": "Radio100",
     "allowed_locations": ["CPH-1", "CPH-2"]
 }`. This will return 201 CREATED and the added device.
+
 2. Set location `http://localhost:5000/radios/100/location` POST with payload `{
     "location": "CPH-1".
 }`. Returns 200 OK.
+
 3. Get location `http://localhost:5000/radios/100/location` GET. Returns 200 OK and the location. 
 
