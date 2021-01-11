@@ -47,7 +47,7 @@ def set_location(id) -> Response:
 
     # Ensure location is allowed
     if request.get_json()["location"] not in allowed_locations:
-        return Response(status=403)
+        return Response("Location is not allowed", status=403)
 
     # Update the location
     db.session.query(Device).filter(Device.id == id).\
@@ -65,5 +65,5 @@ def get_location(id) -> Response:
     device = Device.query.filter_by(id=id).first()
     # Check that location is set
     if not device or device.location == None:
-        return Response(status=404)
+        return Response("No location exists", status=404)
     return jsonify({"location": device.location}), 200
