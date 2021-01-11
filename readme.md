@@ -17,14 +17,23 @@ Steps to run the project:
 
 Example use of the api:
 
-1. Add device `http://localhost:5000/radios/100` POST with payload `{
+1. Add device `http://localhost:5000/radios/100` POST with payload 
+    ```json
+    {
     "alias": "Radio100",
     "allowed_locations": ["CPH-1", "CPH-2"]
-}`. This will return 201 CREATED and the added device.
+    }
+    ```
 
-2. Set location `http://localhost:5000/radios/100/location` POST with payload `{
+    This will return 201 CREATED and the added device.
+
+1. Set location `http://localhost:5000/radios/100/location` POST with payload 
+    ```json
+    {
     "location": "CPH-1".
-}`. Returns 200 OK.
+    }
+    ```
+    Returns 200 OK.
 
 3. Get location `http://localhost:5000/radios/100/location` GET. Returns 200 OK and the location. 
 
