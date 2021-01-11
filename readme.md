@@ -30,7 +30,7 @@ Example use of the api:
 1. Set location `http://localhost:5000/radios/100/location` POST with payload 
     ```json
     {
-    "location": "CPH-1".
+    "location": "CPH-1"
     }
     ```
     Returns 200 OK.
