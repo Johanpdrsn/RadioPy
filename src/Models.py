@@ -7,8 +7,7 @@ class Device(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     alias = db.Column(db.String(), nullable=False)
     location = db.Column(db.String())
-    allowed_locations = db.relationship(
-        "Location", backref="alias")
+    allowed_locations = db.relationship("Location")
 
     def __init__(self, id, alias, allowed_locations) -> None:
         super().__init__()
